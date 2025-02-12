@@ -1,5 +1,6 @@
-package br.edu.ifpb.RankingLivros.entities.book;
+package br.edu.ifpb.RankingLivros.interfaces;
 
+import br.edu.ifpb.RankingLivros.entities.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

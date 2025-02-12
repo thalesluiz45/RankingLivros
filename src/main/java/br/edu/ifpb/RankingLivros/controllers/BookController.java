@@ -1,7 +1,7 @@
-package br.edu.ifpb.RankingLivros.controller;
+package br.edu.ifpb.RankingLivros.controllers;
 
-import br.edu.ifpb.RankingLivros.entities.book.Book;
-import br.edu.ifpb.RankingLivros.entities.book.BookRepository;
+import br.edu.ifpb.RankingLivros.entities.Book;
+import br.edu.ifpb.RankingLivros.interfaces.BookRepository;
 import br.edu.ifpb.RankingLivros.dtos.BookResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
