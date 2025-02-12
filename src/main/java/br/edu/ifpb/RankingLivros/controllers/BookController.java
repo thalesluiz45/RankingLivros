@@ -1,12 +1,13 @@
 package br.edu.ifpb.RankingLivros.controllers;
 
-import br.edu.ifpb.RankingLivros.entities.Book;
-import br.edu.ifpb.RankingLivros.interfaces.BookRepository;
 import br.edu.ifpb.RankingLivros.dtos.BookResponseDTO;
+import br.edu.ifpb.RankingLivros.entities.Book;
+import br.edu.ifpb.RankingLivros.exceptions.NotFoundException;
+import br.edu.ifpb.RankingLivros.interfaces.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import br.edu.ifpb.RankingLivros.exceptions.NotFoundException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,10 +21,11 @@ public class BookController {
     //Listar todos os livros
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/list")
-    public List<BookResponseDTO> getAll(){
+    public List<BookResponseDTO> getAll() {
         List<BookResponseDTO> bookList = repository.findAll().stream().map(BookResponseDTO::new).toList();
         return bookList;
     }
+
     //Busca por ID
     @GetMapping("/{id}")
     public ResponseEntity<BookResponseDTO> getById(@PathVariable Long id) {

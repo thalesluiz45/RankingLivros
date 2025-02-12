@@ -11,8 +11,9 @@ import java.util.Set;
 @Entity(name = "publishers")
 public class Publisher implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
 
     private String name;
 

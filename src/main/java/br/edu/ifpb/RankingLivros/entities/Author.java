@@ -9,8 +9,9 @@ import java.util.Set;
 @Data
 @Table(name = "authors")
 @Entity(name = "authors")
-public class Author implements Serializable{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Author implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long authorID;
     private String name;
 

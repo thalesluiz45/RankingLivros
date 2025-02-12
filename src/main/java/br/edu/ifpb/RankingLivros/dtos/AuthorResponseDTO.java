@@ -1,13 +1,12 @@
 package br.edu.ifpb.RankingLivros.dtos;
 
 import br.edu.ifpb.RankingLivros.entities.Author;
-import br.edu.ifpb.RankingLivros.entities.Book;
 
 public record AuthorResponseDTO(
         Long ID, // bookID
-        String title
+        String name
 ) {
-    public AuthorResponseDTO(Author author){
+    public AuthorResponseDTO(Author author) {
         this(
                 author.getAuthorID(),
                 author.getName()
