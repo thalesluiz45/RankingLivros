@@ -8,18 +8,15 @@ import java.util.Set;
 
 @Data
 @Table(name = "authors")
-@Entity(name = "authors")
+@Entity
 public class Author implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long authorID;
+    private Long author_id;
+
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "book_authors",
-            joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
 }

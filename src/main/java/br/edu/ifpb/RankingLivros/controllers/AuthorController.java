@@ -1,7 +1,6 @@
 package br.edu.ifpb.RankingLivros.controllers;
 
 import br.edu.ifpb.RankingLivros.dtos.AuthorResponseDTO;
-import br.edu.ifpb.RankingLivros.dtos.PublisherResponseDTO;
 import br.edu.ifpb.RankingLivros.entities.Author;
 import br.edu.ifpb.RankingLivros.exceptions.NotFoundException;
 import br.edu.ifpb.RankingLivros.interfaces.AuthorRepository;

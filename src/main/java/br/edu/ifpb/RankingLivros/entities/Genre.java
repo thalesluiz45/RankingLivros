@@ -7,16 +7,16 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Data
-@Table(name = "publishers")
+@Table(name = "genres")
 @Entity
-public class Publisher implements Serializable {
+public class Genre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long publisher_id;
+    private Long genre_id;
 
     private String name;
 
-    @ManyToMany(mappedBy = "publishers")
+    @ManyToMany(mappedBy = "genres")
     private Set<Book> books;
 }
