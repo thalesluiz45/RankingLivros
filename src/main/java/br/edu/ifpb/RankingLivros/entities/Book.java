@@ -31,17 +31,17 @@ public class Book implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "book_publishers",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "publisher_id")
-    )
-    private Set<Publisher> publishers;
-
-    @ManyToMany
-    @JoinTable(
             name = "book_genre",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private Set<Genre> genres;
+
+    @ManyToMany
+    @JoinTable(
+            name = "book_publishers",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "publisher_id")
+    )
+    private Set<Publisher> publishers;
 }

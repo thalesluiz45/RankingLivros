@@ -21,7 +21,7 @@ public class SearchByTitleStrategy<T> implements SearchStrategy<T> {
         if (repository instanceof BookRepository) {
             BookRepository bookRepository = (BookRepository) repository;
             return bookRepository.findByTitle(query).stream()
-                    .map(book -> new BookResponseDTO(book)) // Instância correta de ResponseDTO
+                    .map(book -> new BookResponseDTO(book))
                     .collect(Collectors.toList());
         } else {
             throw new UnsupportedOperationException("Busca por título não suportada para este repositório.");

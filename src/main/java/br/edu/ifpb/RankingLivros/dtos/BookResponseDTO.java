@@ -2,6 +2,7 @@ package br.edu.ifpb.RankingLivros.dtos;
 
 import br.edu.ifpb.RankingLivros.entities.Book;
 import br.edu.ifpb.RankingLivros.interfaces.ResponseDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public record BookResponseDTO(
         Long book_id,
@@ -23,11 +24,13 @@ public record BookResponseDTO(
     }
 
     @Override
+    @JsonIgnore
     public Long getId() {
         return book_id;
     }
 
     @Override
+    @JsonIgnore
     public String getName() {
         return title;
     }

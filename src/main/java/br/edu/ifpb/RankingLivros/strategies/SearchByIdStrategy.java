@@ -13,7 +13,6 @@ import br.edu.ifpb.RankingLivros.interfaces.SearchStrategy;
 import br.edu.ifpb.RankingLivros.interfaces.SearchableRepository;
 import br.edu.ifpb.RankingLivros.exceptions.NotFoundException;
 
-import javax.naming.Name;
 import java.util.List;
 
 public class SearchByIdStrategy<T> implements SearchStrategy<T> {

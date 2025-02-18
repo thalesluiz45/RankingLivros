@@ -28,14 +28,12 @@ public class BookController {
         this.searchByIdStrategy = new SearchByIdStrategy<>(repository);
     }
 
-    // Endpoint para buscar livros por título, ID ou retornar todos os livros
     @GetMapping
     public List<BookResponseDTO> getBooks(
             @RequestParam(required = false) String query,
             @RequestParam(required = false) String type
     ) {
         if (query != null && type != null) {
-            // Se os parâmetros query e type forem fornecidos, realiza a busca
             if ("title".equals(type)) {
                 return searchByTitleStrategy.search(query).stream()
                         .map(dto -> (BookResponseDTO) dto)
@@ -48,7 +46,6 @@ public class BookController {
                 throw new IllegalArgumentException("Tipo de busca inválido.");
             }
         } else {
-            // Se nenhum parâmetro for fornecido, retorna todos os livros
             return repository.findAll().stream()
                     .map(BookResponseDTO::new)
                     .collect(Collectors.toList());
