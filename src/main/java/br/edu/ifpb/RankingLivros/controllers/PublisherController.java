@@ -1,47 +1,39 @@
 package br.edu.ifpb.RankingLivros.controllers;
 
-import br.edu.ifpb.RankingLivros.dtos.PublisherResponseDTO;
 import br.edu.ifpb.RankingLivros.entities.Publisher;
-import br.edu.ifpb.RankingLivros.exceptions.NotFoundException;
-import br.edu.ifpb.RankingLivros.interfaces.PublisherRepository;
+import br.edu.ifpb.RankingLivros.interfaces.ResponseDTO;
+import br.edu.ifpb.RankingLivros.interfaces.SearchStrategy;
+import br.edu.ifpb.RankingLivros.strategies.SearchByNameStrategy;
+import br.edu.ifpb.RankingLivros.strategies.SearchByIdStrategy;
+import br.edu.ifpb.RankingLivros.repositories.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("publisher")
+@RequestMapping("/publishers")
 public class PublisherController {
 
     @Autowired
-    private PublisherRepository repository;
+    private PublisherRepository publisherRepository;
 
-    //Listar todas as editoras
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/list")
-    public List<PublisherResponseDTO> getAll() {
-        Set<String> uniqueNames = new LinkedHashSet<>();
-        List<PublisherResponseDTO> bookList = repository.findAll().stream().filter(publisher -> uniqueNames.add(publisher.getName())).map(PublisherResponseDTO::new).toList();
-        return bookList;
+    private final SearchStrategy<Publisher> searchByNameStrategy;
+    private final SearchStrategy<Publisher> searchByIdStrategy;
+
+    public PublisherController(PublisherRepository publisherRepository) {
+        this.publisherRepository = publisherRepository;
+        this.searchByNameStrategy = new SearchByNameStrategy<>(publisherRepository);
+        this.searchByIdStrategy = new SearchByIdStrategy<>(publisherRepository);
     }
 
-    //Busca por ID
-    @GetMapping("/{id}")
-    public ResponseEntity<PublisherResponseDTO> getById(@PathVariable Long id) {
-        Publisher publisher = repository.findById(id).orElseThrow(NotFoundException::new);
-        return ResponseEntity.ok(new PublisherResponseDTO(publisher));
-    }
-
-    //Busca por nome
     @GetMapping("/search")
-    public List<PublisherResponseDTO> searchName(@RequestParam String query) {
-        return repository.findByName(query)
-                .stream()
-                .map(PublisherResponseDTO::new)
-                .collect(Collectors.toList());
+    public List<ResponseDTO> search(@RequestParam String query, @RequestParam String type) {
+        if ("name".equals(type)) {
+            return searchByNameStrategy.search(query);
+        } else if ("id".equals(type)) {
+            return searchByIdStrategy.search(query);
+        }
+        throw new IllegalArgumentException("Tipo de busca inválido.");
     }
 }

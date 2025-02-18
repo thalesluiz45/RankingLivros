@@ -1,44 +1,57 @@
 package br.edu.ifpb.RankingLivros.controllers;
 
-import br.edu.ifpb.RankingLivros.dtos.BookResponseDTO;
 import br.edu.ifpb.RankingLivros.entities.Book;
-import br.edu.ifpb.RankingLivros.exceptions.NotFoundException;
-import br.edu.ifpb.RankingLivros.interfaces.BookRepository;
+import br.edu.ifpb.RankingLivros.dtos.BookResponseDTO;
+import br.edu.ifpb.RankingLivros.interfaces.SearchStrategy;
+import br.edu.ifpb.RankingLivros.strategies.SearchByTitleStrategy;
+import br.edu.ifpb.RankingLivros.strategies.SearchByIdStrategy;
+import br.edu.ifpb.RankingLivros.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("books")
+@RequestMapping("/books")
 public class BookController {
 
     @Autowired
     private BookRepository repository;
 
-    //Listar todos os livros
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/list")
-    public List<BookResponseDTO> getAll() {
-        List<BookResponseDTO> bookList = repository.findAll().stream().map(BookResponseDTO::new).toList();
-        return bookList;
+    private final SearchStrategy<Book> searchByTitleStrategy;
+    private final SearchStrategy<Book> searchByIdStrategy;
+
+    public BookController(BookRepository repository) {
+        this.repository = repository;
+        this.searchByTitleStrategy = new SearchByTitleStrategy<>(repository);
+        this.searchByIdStrategy = new SearchByIdStrategy<>(repository);
     }
 
-    //Busca por ID
-    @GetMapping("/{id}")
-    public ResponseEntity<BookResponseDTO> getById(@PathVariable Long id) {
-        Book book = repository.findById(id).orElseThrow(NotFoundException::new);
-        return ResponseEntity.ok(new BookResponseDTO(book));
-    }
-
-    //Busca por título
-    @GetMapping("/search")
-    public List<BookResponseDTO> searchBooks(@RequestParam String query) {
-        return repository.findByTitle(query)
-                .stream()
-                .map(BookResponseDTO::new)
-                .collect(Collectors.toList());
+    // Endpoint para buscar livros por título, ID ou retornar todos os livros
+    @GetMapping
+    public List<BookResponseDTO> getBooks(
+            @RequestParam(required = false) String query,
+            @RequestParam(required = false) String type
+    ) {
+        if (query != null && type != null) {
+            // Se os parâmetros query e type forem fornecidos, realiza a busca
+            if ("title".equals(type)) {
+                return searchByTitleStrategy.search(query).stream()
+                        .map(dto -> (BookResponseDTO) dto)
+                        .collect(Collectors.toList());
+            } else if ("id".equals(type)) {
+                return searchByIdStrategy.search(query).stream()
+                        .map(dto -> (BookResponseDTO) dto)
+                        .collect(Collectors.toList());
+            } else {
+                throw new IllegalArgumentException("Tipo de busca inválido.");
+            }
+        } else {
+            // Se nenhum parâmetro for fornecido, retorna todos os livros
+            return repository.findAll().stream()
+                    .map(BookResponseDTO::new)
+                    .collect(Collectors.toList());
+        }
     }
 }

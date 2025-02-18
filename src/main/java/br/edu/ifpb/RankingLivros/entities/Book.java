@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Data
-@Table(name = "books")
 @Entity
+@Table(name = "books")
 public class Book implements Serializable {
 
     @Id
@@ -23,25 +23,25 @@ public class Book implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "book_authors", // Nome da tabela de junção
-            joinColumns = @JoinColumn(name = "book_id"), // Nome da coluna referindo a Book
-            inverseJoinColumns = @JoinColumn(name = "author_id") // Nome da coluna referindo a Author
+            name = "book_authors",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
     )
     private Set<Author> authors;
 
     @ManyToMany
     @JoinTable(
-            name = "book_publishers", // Nome da tabela de junção
-            joinColumns = @JoinColumn(name = "book_id"), // Nome da coluna referindo a Book
-            inverseJoinColumns = @JoinColumn(name = "publisher_id") // Nome da coluna referindo a Publisher
+            name = "book_publishers",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "publisher_id")
     )
     private Set<Publisher> publishers;
 
     @ManyToMany
     @JoinTable(
-            name = "book_genre", // Nome da tabela de junção
-            joinColumns = @JoinColumn(name = "book_id"), // Nome da coluna referindo a Book
-            inverseJoinColumns = @JoinColumn(name = "genre_id") // Nome da coluna referindo a Genre
+            name = "book_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private Set<Genre> genres;
 }
