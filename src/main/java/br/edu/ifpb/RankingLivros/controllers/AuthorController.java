@@ -7,6 +7,7 @@ import br.edu.ifpb.RankingLivros.strategies.SearchByNameStrategy;
 import br.edu.ifpb.RankingLivros.strategies.SearchByIdStrategy;
 import br.edu.ifpb.RankingLivros.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class AuthorController {
                 throw new IllegalArgumentException("Tipo de busca inválido.");
             }
         } else {
-            return authorRepository.findAll().stream()
+            return authorRepository.findAll(PageRequest.of(0,20)).stream()
                     .map(AuthorResponseDTO::new)
                     .collect(Collectors.toList());
         }

@@ -10,7 +10,10 @@ public record BookResponseDTO(
         String isbn13,
         String title,
         String language_code,
-        String average_rating
+        String average_rating,
+        String[] authors,
+        String[] genres,
+        String[] publishers
 ) implements ResponseDTO {
     public BookResponseDTO(Book book) {
         this(
@@ -19,7 +22,10 @@ public record BookResponseDTO(
                 book.getIsbn13(),
                 book.getTitle(),
                 book.getLanguage_code(),
-                book.getAverage_rating()
+                book.getAverage_rating(),
+                book.getAuthors().stream().map(author -> author.toString()).toArray(String[]::new),
+                book.getGenres().stream().map(genre -> genre.toString()).toArray(String[]::new),
+                book.getPublishers().stream().map(publisher -> publisher.toString()).toArray(String[]::new)
         );
     }
 

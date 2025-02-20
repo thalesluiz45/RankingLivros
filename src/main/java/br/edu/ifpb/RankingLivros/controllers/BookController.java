@@ -7,6 +7,8 @@ import br.edu.ifpb.RankingLivros.strategies.SearchByTitleStrategy;
 import br.edu.ifpb.RankingLivros.strategies.SearchByIdStrategy;
 import br.edu.ifpb.RankingLivros.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public class BookController {
     public List<BookResponseDTO> getBooks(
             @RequestParam(required = false) String query,
             @RequestParam(required = false) String type
+
     ) {
         if (query != null && type != null) {
             if ("title".equals(type)) {
@@ -46,7 +49,7 @@ public class BookController {
                 throw new IllegalArgumentException("Tipo de busca inválido.");
             }
         } else {
-            return repository.findAll().stream()
+            return repository.findAll(PageRequest.of(0,20)).stream()
                     .map(BookResponseDTO::new)
                     .collect(Collectors.toList());
         }
