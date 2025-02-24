@@ -8,7 +8,6 @@ import br.edu.ifpb.RankingLivros.strategies.SearchByIdStrategy;
 import br.edu.ifpb.RankingLivros.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

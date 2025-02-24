@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
 public class AuthorController {
 
     @Autowired
-    private AuthorRepository authorRepository;
+    private AuthorRepository repository;
 
     private final SearchStrategy<Author> searchByNameStrategy;
     private final SearchStrategy<Author> searchByIdStrategy;
 
     public AuthorController(AuthorRepository authorRepository) {
-        this.authorRepository = authorRepository;
+        this.repository = repository;
         this.searchByNameStrategy = new SearchByNameStrategy<>(authorRepository);
         this.searchByIdStrategy = new SearchByIdStrategy<>(authorRepository);
     }
@@ -47,7 +47,7 @@ public class AuthorController {
                 throw new IllegalArgumentException("Tipo de busca inválido.");
             }
         } else {
-            return authorRepository.findAll(PageRequest.of(0,20)).stream()
+            return repository.findAll(PageRequest.of(0,20)).stream()
                     .map(AuthorResponseDTO::new)
                     .collect(Collectors.toList());
         }
