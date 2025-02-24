@@ -30,6 +30,7 @@ public class GenreController {
         this.searchByIdStrategy = new SearchByIdStrategy<>(genreRepository);
     }
 
+
     @GetMapping
     public List<ResponseDTO> getGenres(
             @RequestParam(required = false) String query,
