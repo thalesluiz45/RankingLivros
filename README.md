@@ -3,11 +3,13 @@
 <p> Equipe: Thales Luiz Araújo Carvalho e Thiago dos Santos Araújo</p>
 
 ## Modelo Conceitual
-![modelo_Conseitual](https://github.com/user-attachments/assets/1b2c84b5-b63a-4903-a595-a00b020f020a)
+![modelo_Conseitual](https://github.com/user-attachments/assets/1a720881-2882-438b-8824-41547756e2ca)
+
 
 
 ## Modelo Logico
-![modelo_Logico](https://github.com/user-attachments/assets/20991b7b-4000-4316-b812-9eb8db2f8c88)
+![modelo_Logico](https://github.com/user-attachments/assets/583e62e1-a3db-44fd-bbb3-b1e165609be1)
+
 
 
 ## Mini Mundo
