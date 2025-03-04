@@ -3,10 +3,12 @@
 <p> Equipe: Thales Luiz Araújo Carvalho e Thiago dos Santos Araújo</p>
 
 ## Modelo Conceitual
-![modelo_Conseitual](https://github.com/user-attachments/assets/76cbfd45-0d27-4311-84e3-c695513a5491)
+![modelo_Conseitual](https://github.com/user-attachments/assets/1b2c84b5-b63a-4903-a595-a00b020f020a)
+
 
 ## Modelo Logico
-![modelo_Logico](https://github.com/user-attachments/assets/1dd7e4db-750e-4ccb-ba3b-8eca03e0f1e2)
+![modelo_Logico](https://github.com/user-attachments/assets/20991b7b-4000-4316-b812-9eb8db2f8c88)
+
 
 ## Mini Mundo
 
@@ -67,11 +69,4 @@ O usuário poderá interagir com o sistema por meio de uma API REST, permitindo 
 
 - Implementação de uma interface gráfica ou web para uma melhor experiência do usuário.
 - Expansão do banco de dados com novas fontes de informação sobre livros e autores.
-
-## Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).
-Melhorias Futuras
-Implementar uma interface gráfica ou web para melhorar a experiência do usuário.
-Expandir o banco de dados com novas fontes de informação.
 
