@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends SearchableRepository<Book, Long> {
-    List<Book> findByTitle(String title); // Busca por título
 }
