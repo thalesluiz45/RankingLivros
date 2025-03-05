@@ -52,12 +52,6 @@ Utilizamos o SGBD Postgresql da NeonDB.
 - **Listagem de Editoras:** Exibe uma lista de todas as editoras cadastradas.
 - **Filtragem por Editoras:** Permite exibir todos os livros de uma editora específica.
 
-### Funcionalidades do Banco de Dados
-
-- **Carregar Dados:** O sistema carrega automaticamente os dados de livros, autores, gêneros e publicadoras ao ser iniciado.
-- **Salvar Dados:** Qualquer alteração realizada no sistema será salva de forma persistente no banco de dados.
-- **Sair:** O sistema pode ser encerrado a qualquer momento.
-
 ## Interação do Usuário
 
 O usuário poderá interagir com o sistema por meio de uma API REST, permitindo a consulta de informações através de endpoints bem definidos:
@@ -66,6 +60,7 @@ O usuário poderá interagir com o sistema por meio de uma API REST, permitindo 
 - `GET http://localhost:8080/authors` – Listar todos os autores.
 - `GET http://localhost:8080/books` – Listar todos os livros.
 - `GET http://localhost:8080/publishers` – Listar todas as editoras.
+- `...?page=1` - faz a paginação
 
 ## Melhorias Futuras
 
