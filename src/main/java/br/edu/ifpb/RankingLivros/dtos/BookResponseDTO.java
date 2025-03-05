@@ -11,7 +11,9 @@ public record BookResponseDTO(
         String title,
         String language_code,
         Double average_rating,
-        PublisherResponseDTO publisher
+        PublisherResponseDTO publisher,
+        String[] authors,
+        String[] genres
 ) implements ResponseDTO {
     public BookResponseDTO(Book book) {
         this(
@@ -21,7 +23,9 @@ public record BookResponseDTO(
                 book.getTitle(),
                 book.getLanguage_code(),
                 book.getAverage_rating(),
-                book.getPublisher() != null ? new PublisherResponseDTO(book.getPublisher()) : null
+                book.getPublisher() != null ? new PublisherResponseDTO(book.getPublisher()) : null,
+                book.getAuthors().stream().map(author -> author.toString()).toArray(String[]::new),
+                book.getGenres().stream().map(genre -> genre.toString()).toArray(String[]::new)
         );
     }
 
