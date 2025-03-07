@@ -56,10 +56,10 @@ Utilizamos o SGBD Postgresql da NeonDB.
 
 O usuário poderá interagir com o sistema por meio de uma API REST, permitindo a consulta de informações através de endpoints bem definidos:
 
-- `GET http://localhost:8080/genres` – Listar todos os gêneros.
-- `GET http://localhost:8080/authors` – Listar todos os autores.
-- `GET http://localhost:8080/books` – Listar todos os livros.
-- `GET http://localhost:8080/publishers` – Listar todas as editoras.
+- `GET http://localhost:8080/genres` – Listar os gêneros.
+- `GET http://localhost:8080/authors` – Listar os autores.
+- `GET http://localhost:8080/books` – Listar os livros.
+- `GET http://localhost:8080/publishers` – Listar as editoras.
 - `...?page=1` - faz a paginação(digite esse comando na URL).
 
 ## Melhorias Futuras
