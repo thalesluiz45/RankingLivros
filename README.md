@@ -60,7 +60,7 @@ O usuário poderá interagir com o sistema por meio de uma API REST, permitindo 
 - `GET http://localhost:8080/authors` – Listar todos os autores.
 - `GET http://localhost:8080/books` – Listar todos os livros.
 - `GET http://localhost:8080/publishers` – Listar todas as editoras.
-- `...?page=1` - faz a paginação
+- `...?page=1` - faz a paginação(digite esse comando na URL).
 
 ## Melhorias Futuras
 
